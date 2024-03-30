@@ -1,6 +1,6 @@
 from app import webserver
 from flask import request, jsonify
-
+from app.task_runner import Task, Job_type
 import os
 import json
 
@@ -27,16 +27,18 @@ def get_response(job_id):
     print(f"JobID is {job_id}")
     # TODO
     # Check if job_id is valid
-
+    id = job_id.split("job_id")[-1]
+    if int(id) > webserver.tasks_runner.get_job_id_counter():
+        return jsonify({"status": "error", "reason": "Invalid job_id"})
+    
     # Check if job_id is done and return the result
-    #    res = res_for(job_id)
-    #    return jsonify({
-    #        'status': 'done',
-    #        'data': res
-    #    })
+    if os.path.exists(f"results/{job_id}.json"):
+        with open(f"results/{job_id}.json", "r") as f:
+            data = json.load(f)
+            return jsonify({"status": "done", "data": data})
 
     # If not, return running status
-    return jsonify({'status': 'NotImplemented'})
+    return jsonify({'status': 'running'})
 
 @webserver.route('/api/states_mean', methods=['POST'])
 def states_mean_request():
@@ -66,11 +68,13 @@ def state_mean_request():
 def best5_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.best5, request_data)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter)})
 
 @webserver.route('/api/worst5', methods=['POST'])
 def worst5_request():
