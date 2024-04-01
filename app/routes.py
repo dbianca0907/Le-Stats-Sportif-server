@@ -101,51 +101,63 @@ def worst5_request():
 def global_mean_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.global_mean, request_data, None)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/diff_from_mean', methods=['POST'])
 def diff_from_mean_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.diff_from_mean, request_data, None)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/state_diff_from_mean', methods=['POST'])
 def state_diff_from_mean_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
+    request_state = request.json["state"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_diff_from_mean, request_data, request_state)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/mean_by_category', methods=['POST'])
 def mean_by_category_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.mean_by_category, request_data, None)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/state_mean_by_category', methods=['POST'])
 def state_mean_by_category_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
+    request_state = request.json["state"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_mean_by_category, request_data, request_state)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 # Implement graceful shutdown
 @webserver.route('/api/shutdown', methods=['GET'])

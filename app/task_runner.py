@@ -18,16 +18,17 @@ class Job_type(Enum):
     diff_from_mean = 6
     state_diff_from_mean = 7
     state_mean_by_category = 8
-    jobs = 9
-    num_jobs = 10
-    get_results = 11
+    mean_by_category = 9
+    jobs = 10
+    num_jobs = 11
+    get_results = 12
 
 class Task:
-    def __init__(self, job_id, job_type: Job_type, question, state):
+    def __init__(self, job_id, job_type: Job_type, question, location):
         self.job_id = job_id
         self.job_type = job_type
         self.question = question
-        self.state = state
+        self.state = location
 
 class ThreadPool:
     def __init__(self, data_ingestor):
@@ -195,13 +196,125 @@ class TaskRunner(Thread):
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.global_mean:
-            pass
+            question = task.question
+            sums = 0
+            counts = 0
+            mean = 0
+            for entry in data_list:
+                if entry['Question'] == question:
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                        sums += entry['Data_Value']
+                        counts += 1
+            mean = sums / counts
+            global_mean_json = json.dumps({"global_mean": mean})
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(global_mean_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.diff_from_mean:
-            pass
+            question = task.question
+            sums = {}
+            counts ={}
+            sums_global = 0
+            counts_global = 0
+            mean_global = 0
+            for entry in data_list:
+                if entry['Question'] == question:
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                        sums_global += entry['Data_Value']
+                        counts_global += 1
+                        if entry['LocationDesc'] not in sums:
+                            sums[entry['LocationDesc']] = 0
+                            counts[entry['LocationDesc']] = 0
+                        sums[entry['LocationDesc']] += entry['Data_Value']
+                        counts[entry['LocationDesc']] += 1
+            mean_global = sums_global / counts_global
+            averages = {location: sums[location] / counts[location] for location in sums}
+            diff_from_mean = {location: mean_global - averages[location] for location in averages}
+            diff_from_mean_sorted = dict(sorted(diff_from_mean.items(), key=lambda item: item[1], reverse=True))
+            diff_from_mean_json = json.dumps(diff_from_mean_sorted)
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(diff_from_mean_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.state_mean_by_category:
-            pass
+            averages_dict = {}
+            for entry in data_list:
+                if entry['LocationDesc'] == task.state and entry['Question'] == task.question:
+                    key = (entry['StratificationCategory1'], entry['Stratification1'])
+                    if key not in averages_dict:
+                        averages_dict[key] = {'sum': 0, 'count': 0, 'mean': 0}
+                    else:
+                        averages_dict[key]['sum'] += entry['Data_Value']
+                        averages_dict[key]['count'] += 1
+            averages = {
+                str(key): averages_dict[key]['sum'] / averages_dict[key]['count'] if averages_dict[key]['mean'] != 0 else 1
+                for key in averages_dict
+            }
+
+            state_averages_json = json.dumps({task.state: averages})
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    print("INAINTE DE SCRIERE:", state_averages_json)
+                    f.write(state_averages_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.state_diff_from_mean:
-            pass
+            question = task.question
+            state = task.state
+            mean = 0
+            sum = 0
+            count = 0
+            sum_global = 0
+            count_global = 0
+            mean_global = 0
+            for entry in data_list:
+                if entry['Question'] == question and 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                    sum_global += entry['Data_Value']
+                    count_global += 1
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if  entry['LocationDesc'] == state:
+                        sum += entry['Data_Value']
+                        count += 1
+            mean = sum / count
+            mean_global = sum_global / count_global
+            state_mean_json = json.dumps({state: mean_global - mean})
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(state_mean_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
+        elif task.job_type == Job_type.mean_by_category:
+            averages_dict = {}
+            for entry in data_list:
+                key = None
+                if entry['Question'] == task.question:
+                    key = (entry['LocationDesc'], entry['StratificationCategory1'], entry['Stratification1'])
+                if key not in averages_dict:
+                    averages_dict[key] = {'sum': 0, 'count': 0, 'mean': 0}
+                else:
+                    averages_dict[key]['sum'] += entry['Data_Value']
+                    averages_dict[key]['count'] += 1
+            averages = {
+                str(key): averages_dict[key]['sum'] / averages_dict[key]['count'] if averages_dict[key]['mean'] != 0 else 1
+                for key in averages_dict
+            }
+
+            averages_json = json.dumps(averages)
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(averages_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.jobs:
             pass
         elif task.job_type == Job_type.num_jobs:

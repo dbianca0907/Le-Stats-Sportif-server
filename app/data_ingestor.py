@@ -32,10 +32,10 @@ class DataIngestor:
             reader = csv.DictReader(file)
             for row in reader:
                 data_entry = {
+                    'LocationDesc': row['LocationDesc'],
                     'Question': row['Question'],
                     'YearStart': int(row['YearStart']),
                     'YearEnd': int(row['YearEnd']),
-                    'LocationDesc': row['LocationDesc'],
                     'StratificationCategory1': row['StratificationCategory1'],
                     'Stratification1': row['Stratification1'],
                     'Data_Value': float(row['Data_Value'])
