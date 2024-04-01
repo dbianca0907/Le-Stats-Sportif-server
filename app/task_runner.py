@@ -23,10 +23,11 @@ class Job_type(Enum):
     get_results = 11
 
 class Task:
-    def __init__(self, job_id, job_type: Job_type, question):
+    def __init__(self, job_id, job_type: Job_type, question, state):
         self.job_id = job_id
         self.job_type = job_type
         self.question = question
+        self.state = state
 
 class ThreadPool:
     def __init__(self, data_ingestor):
@@ -61,13 +62,11 @@ class ThreadPool:
         self.task_queue.put(task)
         print(f"Task {task.job_id} submitted")
     
-    def register_job(self, job_id, job_type, question):
-        new_task = Task(job_id, job_type, question)
+    def register_job(self, job_id, job_type, question, state):
+        new_task = Task(job_id, job_type, question, state)
         self.submit_task(new_task)
 
     def graceful_shutdown(self):
-        # for _ in range(self.num_of_threads):
-        #     self.task_queue.put(None)
         self.terminate.set()
         print(f"Graceful shutdown initiated will close {len(self.workers)} threads")
         for worker in self.workers:
@@ -100,91 +99,101 @@ class TaskRunner(Thread):
         print(f"Thread {self.ident} is shutting down")
     
     def execute_task(self, task):
-        df = self.data_ingestor.data_list
+        data_list = self.data_ingestor.data_list
         if task.job_type == Job_type.states_mean:
             question = task.question
-            # sums = {}
-            # counts ={}
-            # for entry in data_list:
-            #     if entry['Question'] == question:
-            #         # Verify if the year start and end is in range 2011 - 2022:
-            #         if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
-            #             if entry['LocationDesc'] not in sums:
-            #                 sums[entry['LocationDesc']] = 0
-            #                 counts[entry['LocationDesc']] = 0
-            #             sums[entry['LocationDesc']] += entry['Data_Value']
-            #             counts[entry['LocationDesc']] += 1
-            # averages = {location: sums[location] / counts[location] for location in sums}
-            # averages_sorted = dict(sorted(averages.items(), key=lambda item: item[1]))
-            # states_mean_json = json.dumps(averages_sorted)
-            # file_path = f'./results/job_id{task.job_id}.json'
-            # try:
-            #     with open(file_path, 'w') as f:
-            #         f.write(states_mean_json)
-            # except Exception as e:
-            #     print(f"An error occurred while writing to file: {e}")
-            df_filtered = df[df['Question'] == task.question]
-            df_filtered = df_filtered[(df_filtered['YearStart'] >= 2011) & (df_filtered['YearEnd'] <= 2022)]
-
-            averages = df_filtered.groupby('LocationDesc')['Data_Value'].mean().to_dict()
-            sorted_averages = sorted(averages.items(), key=lambda item: item[1])
-            #top5_averages = dict(sorted_averages[:5])
-
-            #print("STATES MEAN: ", top5_averages)
-
-            #top5_averages_json = json.dump(top5_averages)
-            # best5 = nlargest(5, averages, key=averages.get)
-            # best5_dict = {location: averages[location] for location in best5}
-            # best5_json = json.dumps(best5_dict)
+            sums = {}
+            counts ={}
+            for entry in data_list:
+                if entry['Question'] == question:
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                        if entry['LocationDesc'] not in sums:
+                            sums[entry['LocationDesc']] = 0
+                            counts[entry['LocationDesc']] = 0
+                        sums[entry['LocationDesc']] += entry['Data_Value']
+                        counts[entry['LocationDesc']] += 1
+            averages = {location: sums[location] / counts[location] for location in sums}
+            averages_sorted = dict(sorted(averages.items(), key=lambda item: item[1]))
+            states_mean_json = json.dumps(averages_sorted)
             file_path = f'./results/job_id{task.job_id}.json'
             try:
                 with open(file_path, 'w') as f:
-                    json.dump(sorted_averages, f)
+                    f.write(states_mean_json)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.state_mean:
-            pass
-        elif task.job_type == Job_type.best5:
             question = task.question
-            # sums = {}
-            # counts ={}
-            # for entry in data_list:
-            #     if entry['Question'] == question:
-            #         # Verify if the year start and end is in range 2011 - 2022:
-            #         if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
-            #             if entry['LocationDesc'] not in sums:
-            #                 sums[entry['LocationDesc']] = 0
-            #                 counts[entry['LocationDesc']] = 0
-            #             sums[entry['LocationDesc']] += entry['Data_Value']
-            #             counts[entry['LocationDesc']] += 1
-            # averages = {location: sums[location] / counts[location] for location in sums}
-            # if question is self.data_ingestor.questions_best_is_max:
-            #     best5 = nsmallest(5, averages, key=averages.get)
-            # else:
-            #     best5 = nlargest(5, averages, key=averages.get)
-            # best5_json = json.dumps({key: averages[key] for key in best5})
-            # print(f"Best 5 for {question}: {best5_json}")
-            df_filtered = df[df['Question'] == task.question]
-            df_filtered = df_filtered[(df_filtered['YearStart'] >= 2011) & (df_filtered['YearEnd'] <= 2022)]
-
-            averages = df_filtered.groupby('LocationDesc')['Data_Value'].mean().to_dict()
-            
-
-            if question is self.data_ingestor.questions_best_is_max:
-                sorted_averages = sorted(averages.items(), key=lambda item: item[1], reverse=True)
-                top5_averages = dict(sorted_averages[:5])
-            else:
-                sorted_averages = sorted(averages.items(), key=lambda item: item[1])
-                top5_averages = dict(sorted_averages[:5])
-
+            state = task.state
+            mean = 0
+            sum = 0
+            count = 0
+            for entry in data_list:
+                if entry['Question'] == question and entry['LocationDesc'] == state:
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                        sum += entry['Data_Value']
+                        count += 1
+            mean = sum / count
+            state_mean_json = json.dumps({state: mean})
             file_path = f'./results/job_id{task.job_id}.json'
             try:
                 with open(file_path, 'w') as f:
-                    json.dump(top5_averages, f)
+                    f.write(state_mean_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
+        elif task.job_type == Job_type.best5:
+            question = task.question
+            sums = {}
+            counts ={}
+            for entry in data_list:
+                if entry['Question'] == question:
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                        if entry['LocationDesc'] not in sums:
+                            sums[entry['LocationDesc']] = 0
+                            counts[entry['LocationDesc']] = 0
+                        sums[entry['LocationDesc']] += entry['Data_Value']
+                        counts[entry['LocationDesc']] += 1
+            averages = {location: sums[location] / counts[location] for location in sums}
+            if question in self.data_ingestor.questions_best_is_max:
+                averages_sorted = dict(sorted(averages.items(), key=lambda item: item[1], reverse=True))
+            else:
+                averages_sorted = dict(sorted(averages.items(), key=lambda item: item[1]))
+            best5 = dict(list(averages_sorted.items())[:5])
+            best5_json = json.dumps(best5)
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(best5_json)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.worst5:
-            pass
+            question = task.question
+            sums = {}
+            counts ={}
+            for entry in data_list:
+                if entry['Question'] == question:
+                    # Verify if the year start and end is in range 2011 - 2022:
+                    if 2011 <= entry['YearStart'] <= 2022 and 2011 <= entry['YearEnd'] <= 2022:
+                        if entry['LocationDesc'] not in sums:
+                            sums[entry['LocationDesc']] = 0
+                            counts[entry['LocationDesc']] = 0
+                        sums[entry['LocationDesc']] += entry['Data_Value']
+                        counts[entry['LocationDesc']] += 1
+            averages = {location: sums[location] / counts[location] for location in sums}
+            if question in self.data_ingestor.questions_best_is_min:
+                averages_sorted = dict(sorted(averages.items(), key=lambda item: item[1], reverse=True))
+            else:
+                averages_sorted = dict(sorted(averages.items(), key=lambda item: item[1]))
+            best5 = dict(list(averages_sorted.items())[:5])
+            best5_json = json.dumps(best5)
+            file_path = f'./results/job_id{task.job_id}.json'
+            try:
+                with open(file_path, 'w') as f:
+                    f.write(best5_json)
+            except Exception as e:
+                print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.global_mean:
             pass
         elif task.job_type == Job_type.diff_from_mean:

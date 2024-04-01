@@ -3,6 +3,7 @@ from flask import request, jsonify
 from app.task_runner import Task, Job_type
 import os
 import json
+import re
 
 # Example endpoint definition
 @webserver.route('/api/post_endpoint', methods=['POST'])
@@ -51,7 +52,7 @@ def states_mean_request():
     # TODO
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.states_mean, request_data)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.states_mean, request_data, None)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -61,20 +62,24 @@ def states_mean_request():
 def state_mean_request():
     # TODO
     # Get request data
+    request_question = request.json["question"]
+    request_state = request.json["state"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_mean, request_question, request_state)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 
 @webserver.route('/api/best5', methods=['POST'])
 def best5_request():
     # TODO
     # Get request data
+    # request_data = request.json["question"].strip()
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.best5, request_data)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.best5, request_data, None)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -84,11 +89,13 @@ def best5_request():
 def worst5_request():
     # TODO
     # Get request data
+    request_data = request.json["question"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.worst5, request_data, None)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/global_mean', methods=['POST'])
 def global_mean_request():
