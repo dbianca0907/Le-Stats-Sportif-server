@@ -27,13 +27,15 @@ def get_response(job_id):
     print(f"JobID is {job_id}")
     # TODO
     # Check if job_id is valid
-    id = job_id.split("job_id")[-1]
-    if int(id) > webserver.tasks_runner.get_job_id_counter():
+    job_id_copy = job_id
+    id = job_id_copy.split("job_id")[-1]
+    if int(id) > webserver.job_counter or int(id) < 1:
         return jsonify({"status": "error", "reason": "Invalid job_id"})
     
     # Check if job_id is done and return the result
-    if os.path.exists(f"results/{job_id}.json"):
-        with open(f"results/{job_id}.json", "r") as f:
+    file_path = f'/Users/dumitru.bianca/Desktop/ASC/Le-Stats-Sportif-server/results/{job_id}.json'
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
             data = json.load(f)
             return jsonify({"status": "done", "data": data})
 
@@ -47,11 +49,13 @@ def states_mean_request():
     print(f"Got request {data}")
 
     # TODO
+    request_data = request.json["question"]
     # Register job. Don't wait for task to finish
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.states_mean, request_data)
     # Increment job_id counter
+    webserver.job_counter += 1
     # Return associated job_id
-
-    return jsonify({"status": "NotImplemented"})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/state_mean', methods=['POST'])
 def state_mean_request():
@@ -74,7 +78,7 @@ def best5_request():
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
-    return jsonify({"job_id": "job_id" + str(webserver.job_counter)})
+    return jsonify({"job_id": "job_id" + str(webserver.job_counter - 1)})
 
 @webserver.route('/api/worst5', methods=['POST'])
 def worst5_request():
@@ -135,6 +139,11 @@ def state_mean_by_category_request():
     # Return associated job_id
 
     return jsonify({"status": "NotImplemented"})
+
+# Implement graceful shutdown
+@webserver.route('/api/shutdown', methods=['GET'])
+def shutdown():
+    webserver.tasks_runner.graceful_shutdown()
 
 # You can check localhost in your browser to see what this displays
 @webserver.route('/')

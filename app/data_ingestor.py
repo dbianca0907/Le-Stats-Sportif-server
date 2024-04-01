@@ -1,46 +1,47 @@
 import os
 import json
 import csv
+import pandas as pd
 
 class DataIngestor:
     def __init__(self, csv_path: str):
         # TODO: Read csv from csv_path
-        # data_dict = {}
+        # df = pd.read_csv(csv_path, dtype={'YearStart': int, 'YearEnd': int, 'Data_Value': float})
+        df = pd.read_csv(csv_path)
+
+        selected_columns = [
+            'YearStart', 'YearEnd', 'LocationDesc', 'Question',
+            'StratificationCategory1', 'Stratification1', 'Data_Value'
+        ]
+        df = df[selected_columns]
+        # # do a dict list which will have as a key (Question, YearStart, YearEnd, LocationDesc) and as values all the data values for that key
+        # self.data_list = []
+        # for index, row in df.iterrows():
+        #     key = (row['Question'], row['YearStart'], row['YearEnd'], row['LocationDesc'])
+        #     value = row['Data_Value']
+        #     self.data_list.append((key, value))
+        
+        # self.data_list_category = []
+        # for index, row in df.iterrows():
+        #     key = (row['Question'], row['YearStart'], row['YearEnd'], row['LocationDesc'], row['StratificationCategory1'], row['Stratification1'])
+        #     value = row['Data_Value']
+        #     self.data_list_category.append((key, value))
+
+        # data_list = []
         # with open(csv_path, 'r') as file:
         #     reader = csv.DictReader(file)
         #     for row in reader:
-        #         location_abbr = row['LocationAbbr']
-        #         year_start = row['YearStart']
-        #         year_end = row['YearEnd']
-        #         question = row['Question']
-        #         data_value = row['Data_Value']
-        #         if location_abbr not in data_dict:
-        #             data_dict[location_abbr] = {}
+        #         data_entry = {
+        #             'Question': row['Question'],
+        #             'YearStart': int(row['YearStart']),
+        #             'YearEnd': int(row['YearEnd']),
+        #             'LocationDesc': row['LocationDesc'],
+        #             'StratificationCategory1': row['StratificationCategory1'],
+        #             'Stratification1': row['Stratification1'],
+        #             'Data_Value': float(row['Data_Value'])
+        #         }
+        #         data_list.append(data_entry)
 
-        #         if year_start not in data_dict[location_abbr]:
-        #             data_dict[location_abbr][year_start] = {}
-                
-        #         if year_end not in data_dict[location_abbr][year_start]:
-        #             data_dict[location_abbr][year_start][year_end] = {}
-
-        #         if question not in data_dict[location_abbr][year_start][year_end]:
-        #             data_dict[location_abbr][year_start][year_end][question] = []
-
-        #         data_dict[location_abbr][year_start][year_end][question].append(data_value)
-        data_list = []
-        with open(csv_path, 'r') as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                data_entry = {
-                    'YearStart': row['YearStart'],
-                    'YearEnd': row['YearEnd'],
-                    'LocationDesc': row['LocationDesc'],
-                    'Question': row['Question'],
-                    'StratificationCategory1': row['StratificationCategory1'],
-                    'Stratification1': row['Stratification1'],
-                    'Data_Value': row['Data_Value']
-                }
-                data_list.append(data_entry)
         self.questions_best_is_min = [
             'Percent of adults aged 18 years and older who have an overweight classification',
             'Percent of adults aged 18 years and older who have obesity',
@@ -55,4 +56,4 @@ class DataIngestor:
             'Percent of adults who achieve at least 300 minutes a week of moderate-intensity aerobic physical activity or 150 minutes a week of vigorous-intensity aerobic activity (or an equivalent combination)',
             'Percent of adults who engage in muscle-strengthening activities on 2 or more days a week',
         ]
-        self.data_list = data_list
+        self.data_list = df
