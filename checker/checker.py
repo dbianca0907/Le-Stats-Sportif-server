@@ -14,8 +14,7 @@ ONLY_LAST = False
 
 class TestAPI(unittest.TestCase):
     def setUp(self):
-        # os.system("rm -rf results/*")
-        pass
+        os.system("rm -rf results/*")
 
     def check_res_timeout(self, res_callable, ref_result, timeout_sec, poll_interval = 0.2):
         initial_timestamp = datetime.now()
