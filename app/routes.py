@@ -1,6 +1,6 @@
 from app import webserver
 from flask import request, jsonify
-from app.task_runner import Task, Job_type
+from app.task_runner import Status, Job_type
 import os
 import json
 import re
@@ -33,9 +33,15 @@ def get_response(job_id):
     if int(id) > webserver.job_counter or int(id) < 1:
         return jsonify({"status": "error", "reason": "Invalid job_id"})
     
-    # Check if job_id is done and return the result
+    #Check if job_id is done and return the result
+    # file_path = f'/Users/dumitru.bianca/Desktop/ASC/Le-Stats-Sportif-server/results/{job_id}.json'
+    # if os.path.exists(file_path):
+    #     with open(file_path, "r") as f:
+    #         data = json.load(f)
+    #         return jsonify({"status": "done", "data": data})
     file_path = f'/Users/dumitru.bianca/Desktop/ASC/Le-Stats-Sportif-server/results/{job_id}.json'
-    if os.path.exists(file_path):
+    print("Status ul este: ", webserver.tasks_runner.jobs_status[int(id)])
+    if os.path.exists(file_path) and webserver.tasks_runner.jobs_status[int(id)] == Status.done:
         with open(file_path, "r") as f:
             data = json.load(f)
             return jsonify({"status": "done", "data": data})
@@ -52,7 +58,7 @@ def states_mean_request():
     # TODO
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.states_mean, request_data, None)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.states_mean, request_data, None, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -65,7 +71,7 @@ def state_mean_request():
     request_question = request.json["question"]
     request_state = request.json["state"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_mean, request_question, request_state)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_mean, request_question, request_state, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -79,7 +85,7 @@ def best5_request():
     # request_data = request.json["question"].strip()
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.best5, request_data, None)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.best5, request_data, None, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -91,7 +97,7 @@ def worst5_request():
     # Get request data
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.worst5, request_data, None)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.worst5, request_data, None, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -103,7 +109,7 @@ def global_mean_request():
     # Get request data
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.global_mean, request_data, None)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.global_mean, request_data, None, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -115,7 +121,7 @@ def diff_from_mean_request():
     # Get request data
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.diff_from_mean, request_data, None)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.diff_from_mean, request_data, None, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -128,7 +134,7 @@ def state_diff_from_mean_request():
     request_data = request.json["question"]
     request_state = request.json["state"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_diff_from_mean, request_data, request_state)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_diff_from_mean, request_data, request_state, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -140,7 +146,7 @@ def mean_by_category_request():
     # Get request data
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.mean_by_category, request_data, None)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.mean_by_category, request_data, None, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id
@@ -153,7 +159,7 @@ def state_mean_by_category_request():
     request_data = request.json["question"]
     request_state = request.json["state"]
     # Register job. Don't wait for task to finish
-    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_mean_by_category, request_data, request_state)
+    webserver.tasks_runner.register_job(webserver.job_counter, Job_type.state_mean_by_category, request_data, request_state, Status.running)
     # Increment job_id counter
     webserver.job_counter += 1
     # Return associated job_id

@@ -23,12 +23,17 @@ class Job_type(Enum):
     num_jobs = 11
     get_results = 12
 
+class Status(Enum):
+    running = 1
+    done = 2
+
 class Task:
-    def __init__(self, job_id, job_type: Job_type, question, location):
+    def __init__(self, job_id, job_type: Job_type, question, location, status: Status):
         self.job_id = job_id
         self.job_type = job_type
         self.question = question
         self.state = location
+        self.status = status
 
 class ThreadPool:
     def __init__(self, data_ingestor):
@@ -43,53 +48,52 @@ class ThreadPool:
         self.num_of_threads = int(os.getenv('TP_NUM_OF_THREADS', os.cpu_count()))
         self.task_queue = Queue()
         self.workers = []
-        self.lock = Lock()
         self.terminate = Event()
         self.data_ingestor = data_ingestor
+        self.jobs_status = {}
 
     def start(self):
         director = os.path.dirname('results/')
         if not os.path.exists(director):
             os.makedirs(director)
         for _ in range(self.num_of_threads):
-            task_runner = TaskRunner(self.task_queue, self.data_ingestor, self.lock, self.terminate)
+            task_runner = TaskRunner(self.task_queue, self.jobs_status, self.data_ingestor, self.terminate)
             self.workers.append(task_runner)
             task_runner.start()
         
     def submit_task(self, task):
         self.task_queue.put(task)
     
-    def register_job(self, job_id, job_type, question, state):
-        new_task = Task(job_id, job_type, question, state)
+    def register_job(self, job_id, job_type, question, location, status):
+        new_task = Task(job_id, job_type, question, location, status)
+        self.jobs_status[job_id] = status
         self.submit_task(new_task)
 
     def graceful_shutdown(self):
         self.terminate.set()
+        self.task_queue.append(None)
         for worker in self.workers:
             worker.join()
 
 class TaskRunner(Thread):
-    def __init__(self, task_queue, data_ingestor, lock, graceful_shutdown):
+    def __init__(self, task_queue, job_status, data_ingestor, graceful_shutdown):
         # TODO: init necessary data structures
         super().__init__()
         self.task_queue = task_queue
         self.graceful_shutdown = graceful_shutdown
-        self.lock = lock
         self.data_ingestor = data_ingestor
+        self.job_status = job_status
 
     def run(self):
-        while not self.graceful_shutdown.is_set():
-            # TODO
-            # Get pending job
-            # Execute the job and save the result to disk
-            # Repeat until graceful_shutdown
-            
-            task = None
-            # self.lock.acquire()
+        while (1):
             task = self.task_queue.get()
-            # self.lock.release()
-            if task is not None:
+            if not self.graceful_shutdown.is_set() or task is not None:
                 self.execute_task(task)
+            if self.graceful_shutdown.is_set() and task is None:
+                break
+    
+    def register_status(self, job_id):
+        self.job_status[job_id] = Status.done
     
     def execute_task(self, task):
         df = self.data_ingestor.data_list
@@ -105,6 +109,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(states_mean_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.state_mean:
@@ -117,6 +122,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(state_mean_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.best5:
@@ -135,6 +141,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(best5_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.worst5:
@@ -153,6 +160,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(best5_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.global_mean:
@@ -166,6 +174,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(global_mean_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.diff_from_mean:
@@ -181,10 +190,11 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(diff_from_mean_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.state_mean_by_category:
-            df_filtered = df[(df['Question'] == task.question) & (df['LocationDesc'] == task.state)]
+            df_filtered = df[(df['Question'] == task.question) & (df['LocationDesc'] == task.state)].copy()
             grouped = df_filtered.groupby(['StratificationCategory1', 'Stratification1'])['Data_Value'].mean()
             grouped_dict = grouped.to_dict()
             averages = {str(key): grouped_dict[key] for key in grouped_dict}
@@ -193,6 +203,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(averages_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.state_diff_from_mean:
@@ -201,13 +212,15 @@ class TaskRunner(Thread):
                 (df['YearStart'] >= 2011) &
                 (df['YearEnd'] <= 2022)]
             global_mean = df_filtered['Data_Value'].mean()
-            averages = df_filtered[(df['LocationDesc'] == task.state)].groupby('LocationDesc')['Data_Value'].mean()
+            df_new = df_filtered[(df['LocationDesc'] == task.state)].copy()
+            averages = df_new.groupby('LocationDesc')['Data_Value'].mean()
             averages_dict = averages.to_dict()
             diff_from_mean_json = json.dumps({task.state: global_mean - averages_dict[task.state]})
             file_path = f'./results/job_id{task.job_id}.json'
             try:
                 with open(file_path, 'w') as f:
                     f.write(diff_from_mean_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.mean_by_category:
@@ -220,6 +233,7 @@ class TaskRunner(Thread):
             try:
                 with open(file_path, 'w') as f:
                     f.write(averages_json)
+                    self.register_status(task.job_id)
             except Exception as e:
                 print(f"An error occurred while writing to file: {e}")
         elif task.job_type == Job_type.jobs:
