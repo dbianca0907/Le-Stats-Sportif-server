@@ -4,7 +4,7 @@ import csv
 import pandas as pd
 
 class DataIngestor:
-    def __init__(self, csv_path: str):
+    def __init__(self, csv_path: str = "./nutrition_activity_obesity_usa_subset.csv"):
         # TODO: Read csv from csv_path
         df = pd.read_csv(csv_path, dtype={'YearStart': int, 'YearEnd': int, 'Data_Value': float})
 
