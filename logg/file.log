@@ -1,99 +1,394 @@
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id87
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id88
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id89
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id90
-2024-04-10 14:15:54 - INFO - Job status: Status.running
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id90
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id91
-2024-04-10 14:15:54 - INFO - Job status: Status.running
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id92
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id93
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id94
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id95
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/state_mean_by_category
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id96
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id97
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id98
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id99
-2024-04-10 14:15:54 - INFO - Job status: Status.running
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id99
-2024-04-10 14:15:54 - INFO - Job status: Status.done
-2024-04-10 14:15:54 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:54 - INFO - Received request for job_id: job_id100
-2024-04-10 14:15:54 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id100
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id101
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id102
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id103
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id104
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id104
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/states_mean
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id105
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id105
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id106
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id106
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id107
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id108
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id109
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id110
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id110
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id111
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id112
-2024-04-10 14:15:55 - INFO - Job status: Status.running
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id113
-2024-04-10 14:15:55 - INFO - Job status: Status.done
-2024-04-10 14:15:55 - INFO - Got request from /api/worst5
-2024-04-10 14:15:55 - INFO - Received request for job_id: job_id114
-2024-04-10 14:15:55 - INFO - Job status: Status.running
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id1
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id2
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id3
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id4
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id5
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id6
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id7
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id8
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:32 - INFO - Got request from /api/best5
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id9
+2024-04-10 17:10:32 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:32 - INFO - Received request for job_id: job_id9
+2024-04-10 17:10:32 - INFO - Job status: Status.DONE
+2024-04-10 17:10:33 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:33 - INFO - Received request for job_id: job_id10
+2024-04-10 17:10:33 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:33 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:33 - INFO - Received request for job_id: job_id11
+2024-04-10 17:10:33 - INFO - Job status: Status.DONE
+2024-04-10 17:10:33 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:33 - INFO - Received request for job_id: job_id12
+2024-04-10 17:10:33 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:33 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:33 - INFO - Received request for job_id: job_id13
+2024-04-10 17:10:33 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id14
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id15
+2024-04-10 17:10:34 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id15
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id16
+2024-04-10 17:10:34 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:34 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id17
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/diff_from_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id18
+2024-04-10 17:10:34 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id19
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id20
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id21
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id22
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id23
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id24
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id25
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id26
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/global_mean
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id27
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id28
+2024-04-10 17:10:34 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id28
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id29
+2024-04-10 17:10:34 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id29
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:34 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id30
+2024-04-10 17:10:34 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:34 - INFO - Received request for job_id: job_id30
+2024-04-10 17:10:34 - INFO - Job status: Status.DONE
+2024-04-10 17:10:35 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id31
+2024-04-10 17:10:35 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id31
+2024-04-10 17:10:35 - INFO - Job status: Status.DONE
+2024-04-10 17:10:35 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id32
+2024-04-10 17:10:35 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id32
+2024-04-10 17:10:35 - INFO - Job status: Status.DONE
+2024-04-10 17:10:35 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id33
+2024-04-10 17:10:35 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id33
+2024-04-10 17:10:35 - INFO - Job status: Status.DONE
+2024-04-10 17:10:35 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id34
+2024-04-10 17:10:35 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:35 - INFO - Received request for job_id: job_id34
+2024-04-10 17:10:35 - INFO - Job status: Status.DONE
+2024-04-10 17:10:36 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id35
+2024-04-10 17:10:36 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id35
+2024-04-10 17:10:36 - INFO - Job status: Status.DONE
+2024-04-10 17:10:36 - INFO - Got request from /api/mean_by_category
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id36
+2024-04-10 17:10:36 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id36
+2024-04-10 17:10:36 - INFO - Job status: Status.DONE
+2024-04-10 17:10:36 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id37
+2024-04-10 17:10:36 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id37
+2024-04-10 17:10:36 - INFO - Job status: Status.DONE
+2024-04-10 17:10:36 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id38
+2024-04-10 17:10:36 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id38
+2024-04-10 17:10:36 - INFO - Job status: Status.DONE
+2024-04-10 17:10:36 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:36 - INFO - Received request for job_id: job_id39
+2024-04-10 17:10:36 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id39
+2024-04-10 17:10:37 - INFO - Job status: Status.DONE
+2024-04-10 17:10:37 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id40
+2024-04-10 17:10:37 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:37 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id41
+2024-04-10 17:10:37 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:37 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id42
+2024-04-10 17:10:37 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id42
+2024-04-10 17:10:37 - INFO - Job status: Status.DONE
+2024-04-10 17:10:37 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id43
+2024-04-10 17:10:37 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id43
+2024-04-10 17:10:37 - INFO - Job status: Status.DONE
+2024-04-10 17:10:37 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id44
+2024-04-10 17:10:37 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id44
+2024-04-10 17:10:37 - INFO - Job status: Status.DONE
+2024-04-10 17:10:37 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:37 - INFO - Received request for job_id: job_id45
+2024-04-10 17:10:37 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id45
+2024-04-10 17:10:38 - INFO - Job status: Status.DONE
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id46
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id47
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id48
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id48
+2024-04-10 17:10:38 - INFO - Job status: Status.DONE
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id49
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id49
+2024-04-10 17:10:38 - INFO - Job status: Status.DONE
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id50
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id51
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id51
+2024-04-10 17:10:38 - INFO - Job status: Status.DONE
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id52
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:38 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:38 - INFO - Received request for job_id: job_id53
+2024-04-10 17:10:38 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id53
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id54
+2024-04-10 17:10:39 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id54
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id55
+2024-04-10 17:10:39 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id55
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_diff_from_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id56
+2024-04-10 17:10:39 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id56
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id57
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id58
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id59
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id60
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id61
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id62
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id63
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id64
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id65
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id66
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id67
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id68
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id69
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id70
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id71
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id72
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id73
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id74
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id75
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id76
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id77
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id78
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id79
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id80
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id81
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id82
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id83
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id84
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id85
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id86
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id87
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id88
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id89
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id90
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id91
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id92
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id93
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id94
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id95
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/state_mean_by_category
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id96
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id97
+2024-04-10 17:10:39 - INFO - Job status: Status.DONE
+2024-04-10 17:10:39 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:39 - INFO - Received request for job_id: job_id98
+2024-04-10 17:10:39 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id98
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id99
+2024-04-10 17:10:40 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id100
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id101
+2024-04-10 17:10:40 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id102
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id103
+2024-04-10 17:10:40 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id104
+2024-04-10 17:10:40 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Got request from /api/states_mean
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id105
+2024-04-10 17:10:40 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id106
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id107
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id108
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id109
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id110
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id111
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id112
+2024-04-10 17:10:40 - INFO - Job status: Status.RUNNING
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id113
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE
+2024-04-10 17:10:40 - INFO - Got request from /api/worst5
+2024-04-10 17:10:40 - INFO - Received request for job_id: job_id114
+2024-04-10 17:10:40 - INFO - Job status: Status.DONE

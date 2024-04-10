@@ -138,8 +138,8 @@ class TestAPI(unittest.TestCase):
         stdout = sys.stdout
         sys.stdout = StringIO()
 
-        # ARGS = ["-r","n", "--rcfile=./checker/pylintrc"]
-        # r = pylint.lint.Run(python_files + ARGS, exit=False)
+        ARGS = ["-r","n", "--rcfile=./checker/pylintrc"]
+        r = pylint.lint.Run(python_files + ARGS, exit=False)
 
         test = sys.stdout.getvalue()
         sys.stdout.close()

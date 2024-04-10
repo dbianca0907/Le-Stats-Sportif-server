@@ -1,9 +1,8 @@
-import os
-import json
-import csv
+"""Module for reading and processing the data from the CSV file."""
 import pandas as pd
 
 class DataIngestor:
+    """Class for processing the data from the CSV file."""
     def __init__(self, csv_path: str = "./nutrition_activity_obesity_usa_subset.csv"):
         df = pd.read_csv(csv_path, dtype={'YearStart': int, 'YearEnd': int, 'Data_Value': float})
 
