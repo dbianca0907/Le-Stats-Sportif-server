@@ -1,0 +1,53 @@
+commit 287ec860728c5de968e6dc11147554a6e8a485f6
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Tue Apr 9 23:48:54 2024 +0300
+
+    started unittesting, uploaded new checker
+
+commit 24c4cac0e2a05d7a9756e0b3957d64bdd53e78e3
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Tue Apr 9 10:42:10 2024 +0300
+
+    all points with old checker -> before unit testing
+
+commit 4848ceed4b685cfe3880e7443ac4b7309c33de64
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Mon Apr 1 19:12:04 2024 +0300
+
+    passes all the tests --> problem at synchronization
+
+commit e0c4b70e9ead1147505cbdc2e96b02a08fe7f4fd
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Mon Apr 1 17:32:40 2024 +0300
+
+    7 endpoints implemented without pandas
+
+commit bf7e26014982f597d4d9b18201dfb81dbf906b77
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Mon Apr 1 12:03:36 2024 +0300
+
+    4 endpoints implemented
+
+commit 5f6e4c593884bbeb0bb4f6e3e12575b799834b43
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Mon Apr 1 11:16:09 2024 +0300
+
+    2 types of getting data
+
+commit 3d4a9af315b2d96c9eacebf694ec9c3ea650db80
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Sat Mar 30 18:19:13 2024 +0200
+
+    implemented data ingestor, unit test for parsing and part of best5 endpoint
+
+commit 43a8e4d476833af0bff8f8093251aeab7f12600c
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Wed Mar 27 20:33:14 2024 +0200
+
+    skel
+
+commit d05849dc9ce656004f5a169203a4183e300f16d9
+Author: dbianca0907 <94173429+dbianca0907@users.noreply.github.com>
+Date:   Wed Mar 27 20:32:08 2024 +0200
+
+    Initial commit
