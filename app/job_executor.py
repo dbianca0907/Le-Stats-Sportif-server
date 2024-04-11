@@ -50,8 +50,9 @@ class JobExecutor:
         best5_json = json.dumps(best5)
         self.write_result(best5_json, task.job_id)
 
-    def worst5(self, task, df, data_ingestor):
+    def worst5(self, task, data_ingestor):
         """Calculate the worst 5 states based on the mean of the data values and question."""
+        df = data_ingestor.data_list
         question = task.question
         df_filtered = df[(df['Question'] == question) &
             (df['YearStart'] >= 2011) &
@@ -89,7 +90,7 @@ class JobExecutor:
         self.write_result(diff_from_mean_json, task.job_id)
 
     def state_mean_by_category(self, task, df):
-        """Calculate the mean of the data values for a specific state by category."""
+        """Calculate the mean of the data values for a specific state by categpries."""
         df_filtered = df[(df['Question'] == task.question)
                          & (df['LocationDesc'] == task.state)].copy()
         grouped = df_filtered.groupby(['StratificationCategory1', 'Stratification1'])['Data_Value']

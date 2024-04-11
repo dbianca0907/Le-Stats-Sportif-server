@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 from flask import Flask
 from logging.handlers import RotatingFileHandler
 from app.data_ingestor import DataIngestor
@@ -18,19 +19,23 @@ for file in os.listdir(logg_dir):
 webserver.logger = logging.Logger(__name__)
 handler = RotatingFileHandler("logg/file.log", maxBytes=100000, backupCount=10)
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', \
-                              datefmt='%Y-%m-%d %H:%M:%S')
+                            datefmt='%Y-%m-%d %H:%M:%S')
 handler.setFormatter(formatter)
 
 webserver.logger.addHandler(handler)
 
 webserver.logger.setLevel(logging.INFO)
 
-webserver.tasks_runner.start()
+indx = 0
+if len(sys.argv) > 1:
+    indx = 1
+
+if "test_job_executor.py" not in os.path.abspath(sys.argv[indx]):
+    webserver.tasks_runner.start()
 
 webserver.job_counter = 1
 
 director = os.path.dirname('results/')
 if not os.path.exists(director):
     os.makedirs(director)
-
 from app import routes

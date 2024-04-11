@@ -1,6 +1,5 @@
 import unittest
 import sys
-sys.path.append('app')
 from app.data_ingestor import DataIngestor
 import pandas as pd
 

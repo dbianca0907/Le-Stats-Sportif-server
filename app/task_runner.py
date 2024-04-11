@@ -102,7 +102,7 @@ class TaskRunner(Thread):
         elif task.job_type == JobType.BEST5:
             job_exec.best5(task, self.data_ingestor)
         elif task.job_type == JobType.WORST5:
-            job_exec.worst5(task, df, self.data_ingestor)
+            job_exec.worst5(task, self.data_ingestor)
         elif task.job_type == JobType.GLOBAL_MEAN:
             job_exec.global_mean(task, df)
         elif task.job_type == JobType.DIFF_FROM_MEAN:
