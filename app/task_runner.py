@@ -34,57 +34,60 @@ class Task:
 
 class ThreadPool:
     """Class that manages the tasks and the thread pool."""
-    def __init__(self, data_ingestor):
+    def __init__(self, data_ingestor, logger):
         self.num_of_threads = int(os.getenv('TP_NUM_OF_THREADS', os.cpu_count()))
         self.task_queue = Queue()
         self.workers = []
         self.terminate = Event()
         self.data_ingestor = data_ingestor
         self.jobs_status = {}
+        self.stop_server = False
+        self.logger = logger
 
     def start(self):
         """Start the thread pool."""
         for _ in range(self.num_of_threads):
             task_runner = TaskRunner(self.task_queue, self.jobs_status,
-                                     self.data_ingestor, self.terminate)
+                                     self.data_ingestor, self.terminate, self.logger)
             self.workers.append(task_runner)
             task_runner.start()
-
-    def submit_task(self, task):
-        """Submit a task to the task queue."""
-        self.task_queue.put(task)
+        self.logger.info("Thread pool started")
 
     #pylint: disable=R0913
     def register_job(self, job_id, job_type, question, location, status):
         """Register a job in the task queue."""
         new_task = Task(job_id, job_type, question, location, status)
         self.jobs_status[job_id] = status
-        self.submit_task(new_task)
+        self.task_queue.put(new_task)
+        self.logger.info("Job %d registered", job_id)
 
     def graceful_shutdown(self):
         """Gracefully shutdown the thread pool."""
+        self.logger("Gracefully shutting down the thread pool")
         self.terminate.set()
+        self.stop_server = True
         self.task_queue.put(None)
         for worker in self.workers:
             worker.join()
 
 class TaskRunner(Thread):
     """Class that solves the tasks."""
-    def __init__(self, task_queue, job_status, data_ingestor, graceful_shutdown):
+    def __init__(self, task_queue, job_status, data_ingestor, graceful_shutdown, logger):
         super().__init__()
         self.task_queue = task_queue
         self.graceful_shutdown = graceful_shutdown
         self.data_ingestor = data_ingestor
         self.job_status = job_status
+        self.logger = logger
 
     def run(self):
         """ Run the task runner."""
         while 1:
+            self.logger.info("There are %d tasks in the queue", self.task_queue.qsize())
             task = self.task_queue.get()
-            if not self.graceful_shutdown.is_set() and task is not None:
-                self.execute_task(task)
             if self.graceful_shutdown.is_set() and task is None:
                 break
+            self.execute_task(task)
 
     def register_status(self, job_id):
         """Register the status of the job."""
@@ -94,7 +97,7 @@ class TaskRunner(Thread):
     def execute_task(self, task):
         """Execute the task from the queue."""
         df = self.data_ingestor.data_list
-        job_exec = job_executor.JobExecutor()
+        job_exec = job_executor.JobExecutor(self.logger)
         if task.job_type == JobType.STATES_MEAN:
             job_exec.states_mean(task, df)
         elif task.job_type == JobType.STATE_MEAN:

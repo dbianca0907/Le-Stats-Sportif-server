@@ -5,24 +5,11 @@ import os
 import json
 import re
 
-# Example endpoint definition
-@webserver.route('/api/post_endpoint', methods=['POST'])
-def post_endpoint():
-    if request.method == 'POST':
-        # Assuming the request contains JSON data
-        data = request.json
-        print(f"got data in post {data}")
-        # Process the received data
-        # For demonstration purposes, just echoing back the received data
-        response = {"message": "Received data successfully", "data": data}
-
-        # Sending back a JSON response
-        return jsonify(response)
-    # Method Not Allowed
-    return jsonify({"error": "Method not allowed"}), 405
-
 @webserver.route('/api/get_results/<job_id>', methods=['GET'])
 def get_response(job_id):
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info(f"Received request for job_id: {job_id}")
     # Check if job_id is valid
     job_id_copy = job_id
@@ -31,7 +18,7 @@ def get_response(job_id):
         return jsonify({"status": "error", "reason": "Invalid job_id"})
 
     #Check if job_id is done and return the result
-    webserver.logger.info(f"Job status: {webserver.tasks_runner.jobs_status[int(id)]}")
+    webserver.logger.info(f"Job status: {webserver.tasks_runner.jobs_status[int(id)]} for job_id: {id}")
     file_path = f'/Users/dumitru.bianca/Desktop/ASC/Le-Stats-Sportif-server/results/{job_id}.json'
     if os.path.exists(file_path) and webserver.tasks_runner.jobs_status[int(id)] == Status.DONE:
         with open(file_path, "r") as f:
@@ -43,10 +30,12 @@ def get_response(job_id):
 
 @webserver.route('/api/states_mean', methods=['POST'])
 def states_mean_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     # Get request data
     webserver.logger.info("Got request from /api/states_mean")
     data = request.json
-    print(f"Got request {data}")
     request_data = request.json["question"]
     # Register job. Don't wait for task to finish
     webserver.tasks_runner.register_job(webserver.job_counter,
@@ -59,6 +48,9 @@ def states_mean_request():
 
 @webserver.route('/api/state_mean', methods=['POST'])
 def state_mean_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/state_mean")
     # Get request data
     request_question = request.json["question"]
@@ -75,6 +67,9 @@ def state_mean_request():
 
 @webserver.route('/api/best5', methods=['POST'])
 def best5_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/best5")
     # Get request data
     # request_data = request.json["question"].strip()
@@ -90,6 +85,9 @@ def best5_request():
 
 @webserver.route('/api/worst5', methods=['POST'])
 def worst5_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/worst5")
     # Get request data
     request_data = request.json["question"]
@@ -104,6 +102,9 @@ def worst5_request():
 
 @webserver.route('/api/global_mean', methods=['POST'])
 def global_mean_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/global_mean")
     # Get request data
     request_data = request.json["question"]
@@ -118,6 +119,9 @@ def global_mean_request():
 
 @webserver.route('/api/diff_from_mean', methods=['POST'])
 def diff_from_mean_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/diff_from_mean")
     # Get request data
     request_data = request.json["question"]
@@ -132,6 +136,9 @@ def diff_from_mean_request():
 
 @webserver.route('/api/state_diff_from_mean', methods=['POST'])
 def state_diff_from_mean_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/state_diff_from_mean")
     # Get request data
     request_data = request.json["question"]
@@ -147,6 +154,9 @@ def state_diff_from_mean_request():
 
 @webserver.route('/api/mean_by_category', methods=['POST'])
 def mean_by_category_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/mean_by_category")
     # Get request data
     request_data = request.json["question"]
@@ -161,6 +171,9 @@ def mean_by_category_request():
 
 @webserver.route('/api/state_mean_by_category', methods=['POST'])
 def state_mean_by_category_request():
+    if webserver.tasks_runner.terminate.is_set():
+        webserver.logger.error("Invalid request")
+        return jsonify({"status": "error", "message": "Invalid request"})
     webserver.logger.info("Got request from /api/state_mean_by_category")
     # Get request data
     request_data = request.json["question"]
@@ -177,8 +190,13 @@ def state_mean_by_category_request():
 # Implement graceful shutdown
 @webserver.route('/api/shutdown', methods=['GET'])
 def shutdown():
-    webserver.logger.info("Got request from /api/shutdown")
-    webserver.tasks_runner.graceful_shutdown()
+    webserver.logger.info("Shutting down server")
+    if webserver.tasks_runner.terminate.is_set() == False:
+        webserver.tasks_runner.graceful_shutdown()
+        return jsonify({"status": "shutting_down"})
+    webserver.logger.info("Server already shutting down")
+    return jsonify({"status": "error", "message": "Server already shutting down"})
+
 
 @webserver.route('/api/jobs', methods=['GET'])
 def get_status():
@@ -190,9 +208,9 @@ def get_status():
 @webserver.route('/api/num_jobs', methods=['GET'])
 def get_num_jobs():
     webserver.logger.info("Got request from /api/num_jobs")
-    num_jobs = 0
-    if webserver.tasks_runner.terminate is not set:
-        num_jobs = len(webserver.tasks_runner.task_queue)
+    num_jobs = len(webserver.tasks_runner.task_queue)
+    if num_jobs == 0:
+        return jsonify({"status": "done", "message": "All jobs are done"})
     return jsonify({"num_jobs": num_jobs})
 
 
